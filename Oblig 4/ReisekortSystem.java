@@ -6,21 +6,33 @@ public class ReisekortSystem
 
   public ReisekortSystem()
   {
-    < Oppretter arrayen med lengde lik ANTALL. >
+    reisekortene = new Reisekort[ANTALL];
+    //< Oppretter arrayen med lengde lik ANTALL. >
   }
 
   public Reisekort finnReisekort(int nr)
   {
-    < Metoden skal returnere (en referanse/peker til) det reisekortet
+	  for(int i = 0; i < reisekortene.lenght; i++)
+	  {
+	  	if(reisekortene[i].getKortNr() == nr)
+	  	return reisekortene[i];
+	  }
+	  return null;
+    /*< Metoden skal returnere (en referanse/peker til) det reisekortet
       i arrayen som har kortNr lik den innkomne parameteren nr.
-      Hvis kortet ikke finnes i arrayen, skal metoden returnere null.>
+      Hvis kortet ikke finnes i arrayen, skal metoden returnere null.>*/
   }
 
   public void utvidArray()
   {
-    < Metoden skal utvide arrayen med så mange elementer som konstanten
+	  Reisekort[] kort = new Reisekort[reisekortene.lenght + UTVIDELSE];
+
+	  for(int i = 0; i < reisekortene.lenght; i++)
+	  	kort[i] = reisekortene[i];
+	  reisekortene = kort;
+    /*< Metoden skal utvide arrayen med så mange elementer som konstanten
       UTVIDELSE angir. Metoden vil bli kalt når det er behov for å utvide
-      arrayen i forbindelse med innsetting av et nytt reisekort. >
+      arrayen i forbindelse med innsetting av et nytt reisekort. >*/
   }
 
   public void settInnReisekort(Reisekort k)
