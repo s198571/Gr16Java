@@ -1,6 +1,6 @@
 public class ReisekortSystem
 {
-  public static final int = ANTALL 100;
+  public static final int ANTALL = 100;
   public static final int UTVIDELSE = 10;
   private Reisekort[] reisekortene;
 
@@ -12,7 +12,7 @@ public class ReisekortSystem
 
   public Reisekort finnReisekort(int nr)
   {
-	  for(int i = 0; i < reisekortene.lenght; i++)
+	  for(int i = 0; i < reisekortene.length; i++)
 	  {
 	  	if(reisekortene[i].getKortNr() == nr)
 	  	return reisekortene[i];
@@ -25,9 +25,9 @@ public class ReisekortSystem
 
   public void utvidArray()
   {
-	  Reisekort[] kort = new Reisekort[reisekortene.lenght + UTVIDELSE];
+	  Reisekort[] kort = new Reisekort[reisekortene.length + UTVIDELSE];
 
-	  for(int i = 0; i < reisekortene.lenght; i++)
+	  for(int i = 0; i < reisekortene.length; i++)
 	  	kort[i] = reisekortene[i];
 	  reisekortene = kort;
     /*< Metoden skal utvide arrayen med så mange elementer som konstanten
@@ -37,30 +37,58 @@ public class ReisekortSystem
 
   public void settInnReisekort(Reisekort k)
   {
-    < Metoden mottar et nytt reisekort som parameter og skal sette dette
+	  if( finnReisekort(k.getKortNr() == null))
+
+	  for(int i = 0; i < reisekortene.length; i++)
+	  {
+	  	if(reisekortene[i] == null)
+	  	{
+	  		resiekort[i] = k;
+	  		return;
+		}
+		if(i == reisekortene.length - 1)
+			utvidArray();
+	  }
+    /*< Metoden mottar et nytt reisekort som parameter og skal sette dette
       inn på første ledige plass i arrayen, under forutsetning av at det
       ikke finnes et reisekort med samme nr i arrayen fra før.
       Hvis arrayen er full, skal den først utvides med så mange
       elementer som konstanten UTVIDELSE angir, og deretter skal kortet
-      settes inn. >
+      settes inn. >*/
   }
 
   public Klippekort ladOppKlippekort( int nr, int beløp )
   {
-    < Hvis det finnes et klippekort med kortNr lik den innkomne parameteren nr,
+	Reisekort kort = finnReisekort(nr);
+
+	if(kort instanceof Klippekort)
+	{
+	  		kort.ladOpp(beløp);
+	  		return kort;
+	}
+	  	return null;
+    /*< Hvis det finnes et klippekort med kortNr lik den innkomne parameteren nr,
       skal metoden øke saldoen på dette kortet med så mye som parameteren
       beløp angir, og deretter returnere (en referanse/peker til) klippekortet.
-      Hvis det ikke finnes et slikt klippekort, skal metoden returnere null. >
+      Hvis det ikke finnes et slikt klippekort, skal metoden returnere null. >*/
   }
-
   public static String inntjeningsInfo()
   {
-    < Metoden skal returnere en tekst som inneholder informasjon om hvor mange
+	  String utskrift = "";
+	  int sumTotal = Klippekort.getSumAlleKlippekort() + Dagskort.getSumAlleDagskort() + Månedskort.getSumAlleMånedskort();
+	  utskrift += "Det er solgt kort for kr. " + sumTotal + ".-/n";
+	  utskrift += "Av disse er det solgt/n";
+	  utskrift += Klippekort.getAntallSolgte() + " klippekort for tilsammen kr. " + Klippekort.getSumAlleKlippekort() + ".-/n";
+      utskrift += Dagskort.getAntallSolgte() + " dagskort for tilsammen kr. " + Dagskort.getSumAlleKlippekort() + ".-/n";
+   	  utskrift += Månedskort.getAntallSolgte() + " klippekort for tilsammen kr. " + Månadskort.getSumAlleKlippekort() + ".-/n";
+
+   /*< Metoden skal returnere en tekst som inneholder informasjon om hvor mange
       reisekort det er solgt av de forskjellige typene, hvor mye som er tjent inn
-      på hver type, og hvor mye som er tjent inn totalt. >
+      på hver type, og hvor mye som er tjent inn totalt. >*/
   }
 }  // end of class ReisekortSystem
 
+/*
 a) Programmer klassens konstruktør og metoden public Reisekort finnReisekort(int nr).
 
 b) Programmer metoden public void utvidArray().
@@ -69,4 +97,4 @@ c) Programmer metoden public void settInnReisekort(Reisekort k).
 
 d) Programmer metoden public Klippekort ladOppKlippekort( int nr, int beløp ).
 
-e) Programmer metoden public static String inntjeningsInfo().
+e) Programmer metoden public static String inntjeningsInfo().*/
