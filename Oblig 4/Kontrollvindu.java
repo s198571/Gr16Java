@@ -51,7 +51,7 @@ public class Kontrollvindu extends JFrame
 	  String tekst = "";
 
 
-	  Reisekort kort = finnReisekort(Integer.parseInt(nr));
+	  Reisekort kort = kortsystem.finnReisekort(Integer.parseInt(nr));
 	  	if( kort != null)
 	  	{
 			if(kort.gyldig())
@@ -59,25 +59,25 @@ public class Kontrollvindu extends JFrame
 				if( kort instanceof Klippekort)
 				{
 					tekst += "Betalt kr. " + kort.getPris() + ".-\n";
-					tekst += "Saldo kr. " + kort.getSaldo() + ".-\n";
-					tekst += "Gyldig til " + kort.gyldigtil() + ".-\n";
+					tekst += "Saldo kr. " + ((Klippekort)kort).getSaldo() + ".-\n";
+					tekst += "Gyldig til " + kort.gyldigTil() + ".-\n";
 				}
 
 				else
 				{
-					tekst += "Gyldig til " + kort.gyldigtil() + ".-\n";
+					tekst += "Gyldig til " + kort.gyldigTil() + ".-\n";
 				}
 			}
 			else
 			{
-				text += "Ugyldig Reisekort!\n";
+				tekst += "Ugyldig Reisekort!\n";
 				if( kort instanceof Klippekort )
-				text += "Saldo kr. " + kort.getSaldo() + ".-\n";
+				tekst += "Saldo kr. " + ((Klippekort)kort).getSaldo() + ".-\n";
 			}
 		}
 		else
 		{
-			text += "Kortet er ukjent!";
+			tekst += "Kortet er ukjent!";
 		}
 
 		display.append( tekst );
@@ -96,7 +96,7 @@ public class Kontrollvindu extends JFrame
     //< privat lytteklasse >
     private class Lytter implements ActionListener
     {
-		public void ActionPerformed( ActionEvent e )
+		public void actionPerformed( ActionEvent e )
 		{
 			if( e.getSource() == kontroll)
 				kontrollerReisekort();
