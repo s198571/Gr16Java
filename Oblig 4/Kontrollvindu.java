@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;
-import java.awt.Event.*;
+import java.awt.event.*;
 
-public class Kontrollvindu implements ActionListener e
+public class Kontrollvindu extends JFrame
 {
   private JTextField kortIdFelt;
   private JTextArea display;
@@ -13,28 +13,79 @@ public class Kontrollvindu implements ActionListener e
   public Kontrollvindu(ReisekortSystem r)
   {
     //< kaller superklassens konstruktør >
-	super( "ReisekortSystem" )
+	super( "Billettkontroll" );
 
     kortsystem = r;
 
+	kontroll= new JButton("Billett-Kontroll");
+	kortIdFelt = new JTextField( 5 );
+	kortIdFelt.setBackground( Color.YELLOW );
+
     //< oppretter lytteobjekt og knytter knappen til det. >
-    kontroll.addActionListener
-    //< setter opp brukergrensesnittet >
+
+    Lytter lytter = new Lytter();
+
+    kontroll.addActionListener(lytter);
+
+	Container c = getContentPane();
+
+
+
+	//< sette opp brukergrensesnittet >
+	c.setLayout( new FlowLayout() );
+
+	c.add( new JLabel("Reisekortnr: "));
+	c.add(kortIdFelt);
+	c.add(kontroll);
+	c.add(display);
+
+	setSize( 200, 300 );
+	setVisible( true );
+	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+
   }
 
   public void kontrollerReisekort()
   {
-    /*< Metoden må lese inn kortets nummer og sjekke om det finnes
-      blandt de registrerte kortene. Hvis det finnes og det er gyldig,
-      skal følgende gjøre:*/
+	  String nr = kortIdFelt.getText();
+	  String tekst = "";
 
-      /*- Hvis det er et klippekort, skal prisen for en reise trekkes fra
-      saldoen på kortet. Deretter skal det skrives ut i tekstområde hva
-      reisen koster, hva som er saldoen etter at reisen er betalt og hvor
-      lenge billetten varer.*/
 
-      /*- Hvis det er et dagskort eller et månedskort skal det kun skrives ut
-      hvor lenge billetten varer.*/
+	  Reisekort kort = finnReisekort(Integer.parseInt(nr));
+	  	if( kort != null)
+	  	{
+			if(kort.gyldig())
+			{
+				if( kort instanceof Klippekort)
+				{
+					tekst += "Betalt kr. " + kort.getPris() + ".-\n";
+					tekst += "Saldo kr. " + kort.getSaldo() + ".-\n";
+					tekst += "Gyldig til " + kort.gyldigtil() + ".-\n";
+				}
+
+				else
+				{
+					tekst += "Gyldig til " + kort.gyldigtil() + ".-\n";
+				}
+			}
+			else
+			{
+				text += "Ugyldig Reisekort!\n";
+				if( kort instanceof Klippekort )
+				text += "Saldo kr. " + kort.getSaldo() + ".-\n";
+			}
+		}
+		else
+		{
+			text += "Kortet er ukjent!";
+		}
+
+		display.append( tekst );
+
+
+
+
+
 
      /* Hvis kortet er ugyldig, skal dette skrives i tekstområdet.
       For klippekort skal i tillegg saldoen skrives ut.*/
@@ -43,6 +94,14 @@ public class Kontrollvindu implements ActionListener e
   }
 
     //< privat lytteklasse >
-    private void addActionListener( this )
+    private class Lytter implements ActionListener
+    {
+		public void ActionPerformed( ActionEvent e )
+		{
+			if( e.getSource() == kontroll)
+				kontrollerReisekort();
+
+		}
+	}
 
 }  // end of class Kontrollvindu
