@@ -37,13 +37,13 @@ public class ReisekortSystem
 
   public void settInnReisekort(Reisekort k)
   {
-	  if( finnReisekort(k.getKortNr() == null))
+	  if( finnReisekort(k.getKortNr()) == null)
 
 	  for(int i = 0; i < reisekortene.length; i++)
 	  {
 	  	if(reisekortene[i] == null)
 	  	{
-	  		resiekort[i] = k;
+	  		reisekortene[i] = k;
 	  		return;
 		}
 		if(i == reisekortene.length - 1)
@@ -59,12 +59,13 @@ public class ReisekortSystem
 
   public Klippekort ladOppKlippekort( int nr, int beløp )
   {
-	Reisekort kort = finnReisekort(nr);
+	Reisekort kort;
+	kort = finnReisekort(nr);
 
 	if(kort instanceof Klippekort)
 	{
-	  		kort.ladOpp(beløp);
-	  		return kort;
+	  		((Klippekort)kort).ladOpp(beløp);
+	  		return ((Klippekort)kort);
 	}
 	  	return null;
     /*< Hvis det finnes et klippekort med kortNr lik den innkomne parameteren nr,
@@ -79,8 +80,9 @@ public class ReisekortSystem
 	  utskrift += "Det er solgt kort for kr. " + sumTotal + ".-/n";
 	  utskrift += "Av disse er det solgt/n";
 	  utskrift += Klippekort.getAntallSolgte() + " klippekort for tilsammen kr. " + Klippekort.getSumAlleKlippekort() + ".-/n";
-      utskrift += Dagskort.getAntallSolgte() + " dagskort for tilsammen kr. " + Dagskort.getSumAlleKlippekort() + ".-/n";
-   	  utskrift += Månedskort.getAntallSolgte() + " klippekort for tilsammen kr. " + Månadskort.getSumAlleKlippekort() + ".-/n";
+      utskrift += Dagskort.getAntallSolgte() + " dagskort for tilsammen kr. " + Dagskort.getSumAlleDagskort() + ".-/n";
+   	  utskrift += Månedskort.getAntallSolgte() + " klippekort for tilsammen kr. " + Månedskort.getSumAlleMånedskort() + ".-/n";
+   	  return utskrift;
 
    /*< Metoden skal returnere en tekst som inneholder informasjon om hvor mange
       reisekort det er solgt av de forskjellige typene, hvor mye som er tjent inn
