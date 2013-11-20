@@ -67,11 +67,11 @@ public class ReiseKortSalg extends JFrame
 	  if( type == 2)
 	  	kort = new Dagskort();
 
-	  if( type == 3)
+	  else
 	  	kort = new Månedskort();
 
-	  kortNrFelt.setText( kort.getKortNr() );
-	  betalingsFelt.setText( kort.getPris() );
+	  kortNrFelt.setText( "" + kort.getKortNr() );
+	  betalingsFelt.setText( "" + kort.getPris() );
 	  kortsystem.settInnReisekort(kort);
 
 
