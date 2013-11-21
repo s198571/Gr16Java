@@ -1,3 +1,10 @@
+/*	Hallbjørn Srorruste, studentnr: s165519 , HINGDATA131AA
+		Thomas Newman, studentnr: s198753, HINGDATA131AA
+		Adrian Westlund, studentnr: s198571, INFORMATIK13H1IA
+
+*/
+
+
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;
@@ -52,15 +59,25 @@ public class Kontrollvindu extends JFrame
 	  String nr = kortIdFelt.getText();
 	  String tekst = "";
 
+	  display.setText("");
+
+
 
 	  Reisekort kort = kortsystem.finnReisekort(Integer.parseInt(nr));
-	  	if( kort != null)
-	  	{
+	  if( kort != null)
+	  {
+			if( kort instanceof Klippekort)
+			{
+				if(kort.gyldigTil() == null)
+				{
+					tekst += "Betalt kr. " + kort.getPris() + ".-\n";
+				}
+
+			}
 			if(kort.gyldig())
 			{
 				if( kort instanceof Klippekort)
 				{
-					tekst += "Betalt kr. " + kort.getPris() + ".-\n";
 					tekst += "Saldo kr. " + ((Klippekort)kort).getSaldo() + ".-\n";
 					tekst += "Gyldig til " + kort.gyldigTil() + ".-\n";
 				}
@@ -72,7 +89,7 @@ public class Kontrollvindu extends JFrame
 			}
 			else
 			{
-				tekst += "Ugyldig Reisekort!\n";
+				tekst += "Kortet er ugyldig!";
 				if( kort instanceof Klippekort )
 				tekst += "Saldo kr. " + ((Klippekort)kort).getSaldo() + ".-\n";
 			}

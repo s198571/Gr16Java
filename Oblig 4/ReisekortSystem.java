@@ -1,3 +1,10 @@
+/*	Hallbjørn Srorruste, studentnr: s165519 , HINGDATA131AA
+		Thomas Newman, studentnr: s198753, HINGDATA131AA
+		Adrian Westlund, studentnr: s198571, INFORMATIK13H1IA
+
+*/
+
+
 public class ReisekortSystem
 {
   public static final int ANTALL = 100;
@@ -77,11 +84,11 @@ public class ReisekortSystem
   {
 	  String utskrift = "";
 	  int sumTotal = Klippekort.getSumAlleKlippekort() + Dagskort.getSumAlleDagskort() + Månedskort.getSumAlleMånedskort();
-	  utskrift += "Det er solgt kort for kr. " + sumTotal + ".-/n";
-	  utskrift += "Av disse er det solgt/n";
-	  utskrift += Klippekort.getAntallSolgte() + " klippekort for tilsammen kr. " + Klippekort.getSumAlleKlippekort() + ".-/n";
-      utskrift += Dagskort.getAntallSolgte() + " dagskort for tilsammen kr. " + Dagskort.getSumAlleDagskort() + ".-/n";
-   	  utskrift += Månedskort.getAntallSolgte() + " klippekort for tilsammen kr. " + Månedskort.getSumAlleMånedskort() + ".-/n";
+	  utskrift += "Det er solgt kort for kr. " + sumTotal + ".-\n";
+	  utskrift += "Av disse er det solgt\n";
+	  utskrift += Klippekort.getAntallSolgte() + " klippekort for tilsammen kr. " + Klippekort.getSumAlleKlippekort() + ".-\n";
+      utskrift += Dagskort.getAntallSolgte() + " dagskort for tilsammen kr. " + Dagskort.getSumAlleDagskort() + ".-\n";
+   	  utskrift += Månedskort.getAntallSolgte() + " månedskort for tilsammen kr. " + Månedskort.getSumAlleMånedskort() + ".-\n";
    	  return utskrift;
 
    /*< Metoden skal returnere en tekst som inneholder informasjon om hvor mange

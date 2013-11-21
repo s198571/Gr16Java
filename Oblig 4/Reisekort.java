@@ -1,3 +1,9 @@
+/*	Hallbjørn Srorruste, studentnr: s165519 , HINGDATA131AA
+		Thomas Newman, studentnr: s198753, HINGDATA131AA
+		Adrian Westlund, studentnr: s198571, INFORMATIK13H1IA
+
+*/
+
 import java.util.Calendar;
 import java.text.DateFormat;
 
@@ -6,12 +12,12 @@ public abstract class Reisekort
   private Calendar utløpstidspunkt; // Blir tildelt verdi når kortet valideres
 	private int kortNr;
 	private int pris;
-	private int nyttNr = 1000;
+	private static int nyttNr = 1;
 
 	public Reisekort(int p)
 	{
 		pris = p;
-		kortNr = ++nyttNr;
+		kortNr = nyttNr++;
 	}
 
 	public void setUtløpstidspunkt(Calendar t)

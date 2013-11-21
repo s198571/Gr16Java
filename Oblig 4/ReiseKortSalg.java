@@ -1,3 +1,9 @@
+/*	Hallbjørn Srorruste, studentnr: s165519 , HINGDATA131AA
+		Thomas Newman, studentnr: s198753, HINGDATA131AA
+		Adrian Westlund, studentnr: s198571, INFORMATIK13H1IA
+
+*/
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -57,21 +63,30 @@ public class ReiseKortSalg extends JFrame
 
   public void nyttReisekort(int type)
   {
+		kortNrFelt.setText("");
+		betalingsFelt.setText("");
+
+
 	  Reisekort kort;
 
 
 	  if( type == 1)
-	  	kort = new Klippekort(Integer.parseInt(beløpsFelt.getText() ));
+			kort = new Klippekort(Integer.parseInt(beløpsFelt.getText() ));
 
-
-	  if( type == 2)
+	  else if( type == 2)
 	  	kort = new Dagskort();
 
 	  else
 	  	kort = new Månedskort();
 
 	  kortNrFelt.setText( "" + kort.getKortNr() );
-	  betalingsFelt.setText( "" + kort.getPris() );
+
+	  if(kort instanceof Klippekort)
+	  	betalingsFelt.setText( "" + beløpsFelt.getText() );
+	  else
+	  	betalingsFelt.setText( "" + kort.getPris() );
+
+
 	  kortsystem.settInnReisekort(kort);
 
 
@@ -112,11 +127,11 @@ public class ReiseKortSalg extends JFrame
   		{
   			if( e.getSource() == klipp )
   				nyttReisekort(KLIPP);
-  			if ( e.getSource() == dag )
+  			else if ( e.getSource() == dag )
   				nyttReisekort(DAG);
-  			if ( e.getSource() == mnd )
+  			else if ( e.getSource() == mnd )
   				nyttReisekort(MÅNED);
-  			if ( e.getSource() == ladeknapp )
+  			else // ( e.getSource() == ladeknapp )
   				ladOppKlippekort();
 
   		}

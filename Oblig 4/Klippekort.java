@@ -1,3 +1,9 @@
+/*	Hallbjørn Srorruste, studentnr: s165519 , HINGDATA131AA
+		Thomas Newman, studentnr: s198753, HINGDATA131AA
+		Adrian Westlund, studentnr: s198571, INFORMATIK13H1IA
+
+*/
+
 import java.util.Calendar;
 
 public class Klippekort extends Reisekort
@@ -41,7 +47,7 @@ public class Klippekort extends Reisekort
 	  	Calendar dato = Calendar.getInstance();
 	  	dato.add( Calendar.HOUR_OF_DAY, 1 );
 
-	  	  if(saldo <= PRIS_PER_REISE)
+	  	  if(saldo >= PRIS_PER_REISE)
 	  	  {
 	  		saldo -= PRIS_PER_REISE;
 	  		setUtløpstidspunkt(dato);
@@ -61,7 +67,7 @@ public class Klippekort extends Reisekort
   public void ladOpp( int beløp )
   {
 	  saldo += beløp;
-	  sumAlleKlippekort += saldo;
+	  sumAlleKlippekort += beløp;
     /*< Metoden over skal øke saldoen på kortet med det beløpet som
       parameteren angir og oppdatere datafeltet sumAlleKlippekort.  >*/
   }

@@ -1,3 +1,10 @@
+/*	Hallbjørn Srorruste, studentnr: s165519 , HINGDATA131AA
+		Thomas Newman, studentnr: s198753, HINGDATA131AA
+		Adrian Westlund, studentnr: s198571, INFORMATIK13H1IA
+
+*/
+
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -30,6 +37,6 @@ public class Administrasjonsvindu extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == knapp)
-			felt.append(ReisekortSystem.inntjeningsInfo());
+			felt.setText(ReisekortSystem.inntjeningsInfo());
 	}
 }
