@@ -15,11 +15,13 @@ public class Kontrollvindu extends JFrame
     //< kaller superklassens konstruktør >
 	super( "Billettkontroll" );
 
-    kortsystem = r;
+  kortsystem = r;
 
 	kontroll= new JButton("Billett-Kontroll");
 	kortIdFelt = new JTextField( 5 );
-	kortIdFelt.setBackground( Color.YELLOW );
+
+	display = new JTextArea(10,30);
+	display.setBackground( Color.YELLOW );
 
     //< oppretter lytteobjekt og knytter knappen til det. >
 
@@ -39,7 +41,7 @@ public class Kontrollvindu extends JFrame
 	c.add(kontroll);
 	c.add(display);
 
-	setSize( 200, 300 );
+	setSize( 350, 250 );
 	setVisible( true );
 	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 

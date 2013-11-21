@@ -27,7 +27,7 @@ public class ReiseKortSalg extends JFrame
     mnd = new JButton ("Månedskort");
     ladeknapp = new JButton("Opplading av klippekort");
 
-    info = new JTextArea( 20, 5 );
+    info = new JTextArea( 5, 30 );
 
     klipp.addActionListener(lytter);
     dag.addActionListener(lytter);
@@ -37,7 +37,7 @@ public class ReiseKortSalg extends JFrame
     //< setter opp brukergrensesnittet. >
     Container c = getContentPane();
     c.setLayout( new FlowLayout() );
-    setSize( 25, 15 );
+    setSize( 350, 220 );
     setVisible( true );
     setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
